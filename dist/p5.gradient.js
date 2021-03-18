@@ -11,6 +11,7 @@ p5.prototype._gradient.texture = undefined;
 
 p5.prototype._gradient.setup = function () {
   console.log('🌸 p5.gradient 🌸\nmade with 💜 by duskvirkus');
+  // TODO assert webgl
 
   noStroke();
 
@@ -29,7 +30,7 @@ p5.prototype._gradient.pre = function () {
 };
 p5.prototype.registerMethod('pre', p5.prototype._gradient.pre);
 
-p5.prototype._gradient.renderTexture = function(shaderName, colorNodes) {
+p5.prototype._gradient.renderTexture = function(shaderName, colorNodes, angle) {
   if (shaderName === undefined) {
     throw new Error(`_gradient.renderTexture was expecting a shaderName argument but received undefined.`);
   } else if (!this.shaders.hasOwnProperty(shaderName)) {
@@ -63,6 +64,10 @@ p5.prototype._gradient.renderTexture = function(shaderName, colorNodes) {
       colorNodes[1].color.levels[3] / 255.0
     ]
   );
+  this.shaders[shaderName].setUniform(
+    'u_angle',
+    angle ? angle : 0
+  );
   this.texture.rect(
     0,
     0,
@@ -73,14 +78,17 @@ p5.prototype._gradient.renderTexture = function(shaderName, colorNodes) {
 
 // public functions
 
-p5.prototype.gradientFill = function (c1, c2) {
+p5.prototype.gradientFill = function (c1, c2, angle) {
   // TODO Improve when to call renderTexture()
-  this._gradient.renderTexture('linear', [
-    {
+  this._gradient.renderTexture(
+    'linear',
+    [{
       color: c1,
     },{
       color: c2,
-    }]);
+    }],
+    angle
+  );
   texture(this._gradient.texture);
 };
 
@@ -111,10 +119,19 @@ precision mediump float;
 uniform vec2 u_resolution;
 uniform vec4 u_color0;
 uniform vec4 u_color1;
+uniform float u_angle;
+
+mat2 rotate2d(float _angle){
+  return mat2(cos(_angle),-sin(_angle),
+              sin(_angle),cos(_angle));
+}
 
 void main() {
   vec2 st = gl_FragCoord.xy/u_resolution.xy;
-  // gl_FragColor = vec4(st.x,0.0,0.0,1.0); // R,G,B,A
+  st -= vec2(0.5);
+  st = rotate2d(u_angle) * st;
+  st += vec2(0.5);
+
   gl_FragColor = mix(u_color0, u_color1, st.x);
 }
 `
