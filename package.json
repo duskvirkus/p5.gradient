@@ -1,0 +1,10 @@
+{
+  "name": "p5.gradient",
+  "version": "0.0.0",
+  "description": "A flexible library that makes using gradients in p5.js super easy.",
+  "scripts": {
+    "build": "cp -f src/core/main.js dist/p5.gradient.js"
+  },
+  "author": "Dusk Graham",
+  "license": "MIT"
+}
