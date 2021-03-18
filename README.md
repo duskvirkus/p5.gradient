@@ -2,7 +2,7 @@
 
 A flexible library that makes using gradients in p5.js super easy.
 
-Follows the p5.js programming paradigm and values being plug and play over performance optimization. That being said the library is designed to be fairly preformat and uses shaders, a webgl feature, behind the scenes. This isn't anything you couldn't create with extensive work in vanilla p5 simply makes things easier and more user friendly.
+Follows the p5.js programming paradigm and values being plug and play over performance optimization. That being said the library is designed to be fairly preformat and uses shaders, a webgl feature, behind the scenes. This isn't anything you couldn't create with extensive work in vanilla p5; This library simply makes things easier and more friendly.
 
 Library is still being developed and is not fully feature yet. Please see below for features that have yet to be implemented.
 
