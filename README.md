@@ -15,6 +15,8 @@ coming soon
 - [ ] make linear gradient editable, color choice and angle (v0.0.1)
 - [ ] use an actual build system (v0.0.1)
 - [ ] documentation (v0.0.1)
+- [ ] unit testing (v0.0.1)
+- [ ] hsb support (v0.0.1)
 - [ ] 3+ color gradients (v0.1.0)
 - [ ] add radial gradients (v0.1.0)
 - [ ] free form gradients, like in adobe illustrator (v0.2.0?)
