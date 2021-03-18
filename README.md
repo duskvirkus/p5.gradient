@@ -12,7 +12,6 @@ coming soon
 
 ## TODO
 
-- [ ] make linear gradient editable, color choice and angle (v0.0.1)
 - [ ] use an actual build system (v0.0.1)
 - [ ] documentation (v0.0.1)
 - [ ] unit testing (v0.0.1)
